@@ -1,0 +1,373 @@
+/* Main Styles for Utuado: Sustainable Future - Minecraft Style */
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    overflow: hidden;
+    background-color: #87CEEB;
+}
+
+/* Loading Screen */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.loading-container {
+    text-align: center;
+    width: 80%;
+    max-width: 500px;
+}
+
+.loading-container h1 {
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    color: #4CAF50;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #555;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background-color: #4CAF50;
+    transition: width 0.3s ease;
+}
+
+.loading-text {
+    font-size: 1.2em;
+}
+
+/* Game UI */
+#game-ui {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+}
+
+#game-ui button {
+    pointer-events: auto;
+}
+
+/* Resources Panel */
+#resources-panel {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    gap: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.resource {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.resource-icon {
+    font-size: 1.5em;
+}
+
+.resource-value {
+    font-weight: bold;
+}
+
+/* Season Indicator */
+#season-indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+}
+
+.season-text {
+    display: block;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.day-counter {
+    display: block;
+    font-size: 0.9em;
+}
+
+/* Building Menu */
+#building-menu {
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 5px;
+    color: white;
+    width: 90%;
+    max-width: 800px;
+    max-height: 60vh;
+    overflow-y: auto;
+    pointer-events: auto;
+}
+
+#building-menu h3 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.building-category {
+    margin-bottom: 15px;
+}
+
+.building-category h4 {
+    margin-bottom: 5px;
+    color: #4CAF50;
+}
+
+.building-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.building-item {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    width: calc(33.33% - 10px);
+    min-width: 100px;
+    transition: background-color 0.2s;
+}
+
+.building-item:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.building-item.selected {
+    background-color: rgba(76, 175, 80, 0.5);
+}
+
+.building-icon {
+    font-size: 2em;
+    margin-bottom: 5px;
+}
+
+.building-name {
+    font-size: 0.9em;
+}
+
+/* Control Buttons */
+#toggle-building-menu, #toggle-help {
+    position: absolute;
+    bottom: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    pointer-events: auto;
+}
+
+#toggle-building-menu {
+    left: 20px;
+}
+
+#toggle-help {
+    right: 20px;
+}
+
+#toggle-building-menu:hover, #toggle-help:hover {
+    background-color: #45a049;
+}
+
+/* Help Panel */
+#help-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 200;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto;
+}
+
+.help-content {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.help-content h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #4CAF50;
+}
+
+.help-content h3 {
+    margin: 15px 0 5px 0;
+    color: #4CAF50;
+}
+
+.help-content ul {
+    margin-left: 20px;
+}
+
+.help-content li {
+    margin-bottom: 5px;
+}
+
+#close-help {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#close-help:hover {
+    background-color: #45a049;
+}
+
+/* Event Dialog */
+#event-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto;
+}
+
+.event-content {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    width: 90%;
+    max-width: 600px;
+}
+
+.event-content h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #4CAF50;
+}
+
+.event-content p {
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+#event-choices {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.event-choice {
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.event-choice:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Game Container */
+#game-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .building-item {
+        width: calc(50% - 10px);
+    }
+    
+    #resources-panel {
+        flex-wrap: wrap;
+        width: auto;
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .building-item {
+        width: 100%;
+    }
+    
+    .resource-icon {
+        font-size: 1.2em;
+    }
+    
+    #toggle-building-menu, #toggle-help {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+}

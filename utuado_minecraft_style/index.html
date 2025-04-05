@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utuado: Sustainable Future</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Use CDN for Three.js instead of import maps for better compatibility -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+    <div id="loading-screen">
+        <div class="loading-container">
+            <h1>Utuado: Sustainable Future</h1>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <p class="loading-text">Loading game assets...</p>
+            <button id="start-game" class="hidden">Start Game</button>
+        </div>
+    </div>
+
+    <div id="game-container" class="hidden">
+        <canvas id="game-canvas"></canvas>
+        
+        <div id="ui-container">
+            <!-- Resources Panel -->
+            <div id="resources-panel">
+                <div id="energy" class="resource">
+                    <span class="resource-icon">⚡</span>
+                    <span class="resource-value">100</span>
+                </div>
+                <div id="water" class="resource">
+                    <span class="resource-icon">💧</span>
+                    <span class="resource-value">100</span>
+                </div>
+                <div id="food" class="resource">
+                    <span class="resource-icon">🌽</span>
+                    <span class="resource-value">100</span>
+                </div>
+                <div id="materials" class="resource">
+                    <span class="resource-icon">🧱</span>
+                    <span class="resource-value">100</span>
+                </div>
+                <div id="knowledge" class="resource">
+                    <span class="resource-icon">📚</span>
+                    <span class="resource-value">50</span>
+                </div>
+            </div>
+            
+            <!-- Season Indicator -->
+            <div id="season-indicator">
+                <span class="season-text">Spring</span>
+                <span class="day-counter">Day 1</span>
+            </div>
+            
+            <!-- Building Menu Button -->
+            <button id="toggle-building-menu" class="ui-button">Build</button>
+            
+            <!-- Help Button -->
+            <button id="toggle-help" class="ui-button">Help</button>
+        </div>
+        
+        <!-- Building Menu -->
+        <div id="building-menu" class="hidden">
+            <h2>Buildings</h2>
+            <div class="building-items">
+                <div class="building-item" data-building="solar_panel">
+                    <div class="building-icon">☀️</div>
+                    <div class="building-name">Solar Panel</div>
+                    <div class="building-cost">🧱 15</div>
+                </div>
+                <div class="building-item" data-building="wind_turbine">
+                    <div class="building-icon">🌀</div>
+                    <div class="building-name">Wind Turbine</div>
+                    <div class="building-cost">🧱 20</div>
+                </div>
+                <div class="building-item" data-building="hydro_plant">
+                    <div class="building-icon">🌊</div>
+                    <div class="building-name">Hydro Plant</div>
+                    <div class="building-cost">🧱 30</div>
+                </div>
+                <div class="building-item" data-building="farm">
+                    <div class="building-icon">🌾</div>
+                    <div class="building-name">Farm</div>
+                    <div class="building-cost">🧱 10</div>
+                </div>
+                <div class="building-item" data-building="water_collector">
+                    <div class="building-icon">🚰</div>
+                    <div class="building-name">Water Collector</div>
+                    <div class="building-cost">🧱 15</div>
+                </div>
+                <div class="building-item" data-building="greenhouse">
+                    <div class="building-icon">🏡</div>
+                    <div class="building-name">Greenhouse</div>
+                    <div class="building-cost">🧱 25</div>
+                </div>
+                <div class="building-item" data-building="ai_center">
+                    <div class="building-icon">🤖</div>
+                    <div class="building-name">AI Center</div>
+                    <div class="building-cost">🧱 40</div>
+                </div>
+                <div class="building-item" data-building="community_center">
+                    <div class="building-icon">🏛️</div>
+                    <div class="building-name">Community Center</div>
+                    <div class="building-cost">🧱 35</div>
+                </div>
+            </div>
+            <button id="close-building-menu" class="close-button">Close</button>
+        </div>
+        
+        <!-- Help Panel -->
+        <div id="help-panel" class="hidden">
+            <h2>How to Play</h2>
+            <div class="help-content">
+                <h3>Game Objective</h3>
+                <p>Build a sustainable community in Utuado, Puerto Rico by balancing resources, implementing AI technologies, and adapting to seasonal changes.</p>
+                
+                <h3>Controls</h3>
+                <ul>
+                    <li><strong>Left Mouse Button:</strong> Place buildings, interact with UI</li>
+                    <li><strong>Right Mouse Button + Drag:</strong> Rotate camera</li>
+                    <li><strong>Middle Mouse Button + Drag:</strong> Pan camera</li>
+                    <li><strong>Mouse Wheel:</strong> Zoom in/out</li>
+                </ul>
+                
+                <h3>Resources</h3>
+                <ul>
+                    <li><strong>Energy (⚡):</strong> Used to power buildings and AI systems</li>
+                    <li><strong>Water (💧):</strong> Required for farms and community needs</li>
+                    <li><strong>Food (🌽):</strong> Keeps your community fed</li>
+                    <li><strong>Materials (🧱):</strong> Used to construct buildings</li>
+                    <li><strong>Knowledge (📚):</strong> Improves AI systems and unlocks new technologies</li>
+                </ul>
+                
+                <h3>Buildings</h3>
+                <ul>
+                    <li><strong>Solar Panel:</strong> Generates energy from sunlight</li>
+                    <li><strong>Wind Turbine:</strong> Generates energy from wind</li>
+                    <li><strong>Hydro Plant:</strong> Generates energy from water</li>
+                    <li><strong>Farm:</strong> Produces food</li>
+                    <li><strong>Water Collector:</strong> Collects and purifies water</li>
+                    <li><strong>Greenhouse:</strong> Produces food regardless of season</li>
+                    <li><strong>AI Center:</strong> Improves resource efficiency</li>
+                    <li><strong>Community Center:</strong> Increases happiness and knowledge</li>
+                </ul>
+                
+                <h3>Seasons</h3>
+                <p>The game cycles through four seasons, each affecting resource production:</p>
+                <ul>
+                    <li><strong>Spring:</strong> Balanced production</li>
+                    <li><strong>Summer:</strong> More energy from solar, less water</li>
+                    <li><strong>Fall:</strong> More food from farms, less energy</li>
+                    <li><strong>Winter:</strong> Less food and energy, more water</li>
+                </ul>
+                
+                <h3>Events</h3>
+                <p>Random events will occur that require your decision. These can have positive or negative effects on your community.</p>
+            </div>
+            <button id="close-help" class="close-button">Close</button>
+        </div>
+        
+        <!-- Event Dialog -->
+        <div id="event-dialog" class="hidden">
+            <div class="event-content">
+                <h2 id="event-title">Event Title</h2>
+                <p id="event-description">Event description goes here.</p>
+                <div id="event-choices">
+                    <!-- Choices will be added dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Consolidated Game Script -->
+    <script src="js/game-bundle.js"></script>
+</body>
+</html>
