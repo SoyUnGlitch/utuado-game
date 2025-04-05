@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utuado: Sustainable Future - 2039</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Import Three.js from CDN -->
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="loading-screen">
+        <div class="loading-container">
+            <h1>Utuado: Sustainable Future</h1>
+            <p>Loading the future of Puerto Rico...</p>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="game-container">
+        <!-- Three.js canvas will be inserted here -->
+    </div>
+
+    <div id="ui-overlay">
+        <div id="resource-display">
+            <div class="resource" id="energy-display">
+                <span class="resource-icon">⚡</span>
+                <span class="resource-value">100</span>
+            </div>
+            <div class="resource" id="water-display">
+                <span class="resource-icon">💧</span>
+                <span class="resource-value">100</span>
+            </div>
+            <div class="resource" id="food-display">
+                <span class="resource-icon">🌽</span>
+                <span class="resource-value">100</span>
+            </div>
+            <div class="resource" id="materials-display">
+                <span class="resource-icon">🧱</span>
+                <span class="resource-value">50</span>
+            </div>
+            <div class="resource" id="knowledge-display">
+                <span class="resource-icon">📚</span>
+                <span class="resource-value">20</span>
+            </div>
+        </div>
+
+        <div id="time-display">
+            <span id="season">Spring</span>
+            <span id="year">2039</span>
+        </div>
+
+        <div id="action-buttons">
+            <button id="build-btn">Build</button>
+            <button id="community-btn">Community</button>
+            <button id="ai-btn">AI Systems</button>
+            <button id="menu-btn">Menu</button>
+        </div>
+    </div>
+
+    <div id="dialog-overlay" class="hidden">
+        <div id="dialog-box">
+            <div id="dialog-header">
+                <h2 id="dialog-title">Event Title</h2>
+                <button id="dialog-close">×</button>
+            </div>
+            <div id="dialog-content">
+                <p id="dialog-text">Event description goes here.</p>
+            </div>
+            <div id="dialog-options">
+                <!-- Options will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <div id="build-menu" class="game-menu hidden">
+        <div class="menu-header">
+            <h2>Build Structures</h2>
+            <button class="menu-close">×</button>
+        </div>
+        <div class="menu-content">
+            <div class="building-option" data-building="solar_panel">
+                <h3>Solar Panel</h3>
+                <p>Produces energy from sunlight</p>
+                <div class="building-cost">
+                    <span>🧱 15</span>
+                    <span>📚 5</span>
+                </div>
+            </div>
+            <div class="building-option" data-building="wind_turbine">
+                <h3>Wind Turbine</h3>
+                <p>Produces energy from wind</p>
+                <div class="building-cost">
+                    <span>🧱 20</span>
+                    <span>📚 10</span>
+                </div>
+            </div>
+            <div class="building-option" data-building="hydro_plant">
+                <h3>Micro Hydro Plant</h3>
+                <p>Produces energy from water</p>
+                <div class="building-cost">
+                    <span>🧱 25</span>
+                    <span>📚 15</span>
+                </div>
+            </div>
+            <div class="building-option" data-building="farm">
+                <h3>Sustainable Farm</h3>
+                <p>Produces food</p>
+                <div class="building-cost">
+                    <span>🧱 10</span>
+                    <span>💧 10</span>
+                </div>
+            </div>
+            <div class="building-option" data-building="water_collector">
+                <h3>Water Collector</h3>
+                <p>Collects and purifies water</p>
+                <div class="building-cost">
+                    <span>🧱 15</span>
+                    <span>📚 5</span>
+                </div>
+            </div>
+            <div class="building-option" data-building="university">
+                <h3>Research Center</h3>
+                <p>Produces knowledge</p>
+                <div class="building-cost">
+                    <span>🧱 30</span>
+                    <span>⚡ 10</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="community-menu" class="game-menu hidden">
+        <div class="menu-header">
+            <h2>Community Members</h2>
+            <button class="menu-close">×</button>
+        </div>
+        <div class="menu-content" id="character-list">
+            <!-- Characters will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <div id="ai-menu" class="game-menu hidden">
+        <div class="menu-header">
+            <h2>AI Systems</h2>
+            <button class="menu-close">×</button>
+        </div>
+        <div class="menu-content">
+            <div class="ai-system" data-system="energyManagement">
+                <h3>Energy Management AI</h3>
+                <p>Optimizes energy distribution</p>
+                <div class="ai-level">Level: <span class="level-value">1</span></div>
+                <button class="upgrade-btn" data-cost="20">Upgrade (📚 20)</button>
+            </div>
+            <div class="ai-system" data-system="agricultural">
+                <h3>Agricultural AI</h3>
+                <p>Improves crop yields</p>
+                <div class="ai-level">Level: <span class="level-value">1</span></div>
+                <button class="upgrade-btn" data-cost="20">Upgrade (📚 20)</button>
+            </div>
+            <div class="ai-system" data-system="environmentalMonitoring">
+                <h3>Environmental Monitoring AI</h3>
+                <p>Predicts weather patterns</p>
+                <div class="ai-level">Level: <span class="level-value">1</span></div>
+                <button class="upgrade-btn" data-cost="20">Upgrade (📚 20)</button>
+            </div>
+            <div class="ai-system" data-system="disasterPreparedness">
+                <h3>Disaster Preparedness AI</h3>
+                <p>Improves response to natural disasters</p>
+                <div class="ai-level">Level: <span class="level-value">1</span></div>
+                <button class="upgrade-btn" data-cost="20">Upgrade (📚 20)</button>
+            </div>
+            <div class="ai-system" data-system="communityManagement">
+                <h3>Community Management AI</h3>
+                <p>Optimizes resource allocation</p>
+                <div class="ai-level">Level: <span class="level-value">1</span></div>
+                <button class="upgrade-btn" data-cost="20">Upgrade (📚 20)</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-menu" class="game-menu hidden">
+        <div class="menu-header">
+            <h2>Menu</h2>
+            <button class="menu-close">×</button>
+        </div>
+        <div class="menu-content">
+            <button id="save-btn">Save Game</button>
+            <button id="load-btn">Load Game</button>
+            <button id="settings-btn">Settings</button>
+            <button id="help-btn">Help</button>
+            <button id="about-btn">About</button>
+        </div>
+    </div>
+
+    <!-- Module scripts -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
